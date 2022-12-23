@@ -1,0 +1,7 @@
+{
+  "name": "camuunidadescordova",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

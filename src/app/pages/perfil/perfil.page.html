@@ -1,0 +1,82 @@
+<ion-header>
+  
+  <ion-toolbar  >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{title}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content fullscreen="true" >
+ 
+  <ion-card>
+    <ion-card-header class="cardheaderperfil">
+    
+      
+       <ion-card-title class="ion-text-center title">
+          Datos de Perfil
+       </ion-card-title>
+
+   
+   </ion-card-header>
+
+   <ion-card-content>
+    <ion-grid>
+      <ion-row >
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon class="icondata" name = "person"></ion-icon>
+              <ion-label >Responsable: </ion-label>
+              <ion-label  > {{identity.name}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon class="icondata" name = "mail"></ion-icon>
+              <ion-label>Email: </ion-label>
+              <ion-label > {{identity.email}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon class="icondata" name = "location"></ion-icon>
+              <ion-label>Municipio: </ion-label>
+              <ion-label> {{identity.municipio}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon class="icondata" name = "storefront"></ion-icon>
+              <ion-label>Unidad Médica: </ion-label>
+              <ion-label> {{identity.unidad}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-icon class="icondata" name = "key"></ion-icon>
+              <ion-label>Clues: </ion-label>
+              <ion-label> {{identity.clues}} </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+   </ion-card-content>
+
+  </ion-card>
+</ion-content>

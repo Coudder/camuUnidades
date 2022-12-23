@@ -24,7 +24,7 @@ export class PerfilPage implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.identity);
+    //console.log(this.identity);
     
   }
 

@@ -31,6 +31,22 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'citologias',
+    loadChildren: () => import('./pages/citologias/citologias.module').then( m => m.CitologiasPageModule)
+  },
+  {
+    path: 'cito-pacientes',
+    loadChildren: () => import('./pages/cito-pacientes/cito-pacientes.module').then( m => m.CitoPacientesPageModule)
+  },
+  {
+    path: 'cito-pacientes-detail/:id',
+    loadChildren: () => import('./pages/cito-pacientes-detail/cito-pacientes-detail.module').then( m => m.CitoPacientesDetailPageModule)
+  },
+  {
+    path: 'cito-pac-archivo',
+    loadChildren: () => import('./pages/cito-pac-archivo/cito-pac-archivo.module').then( m => m.CitoPacArchivoPageModule)
+  },
  
 ];
 

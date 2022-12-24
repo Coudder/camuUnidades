@@ -54,8 +54,8 @@ export class LoginPage implements OnInit {
               response => {
   
                 this.identity = response;
-                console.log(this.token);
-                console.log(this.identity);
+                //console.log(this.token);
+                //console.log(this.identity);
   
                 localStorage.setItem('token',this.token);
                 localStorage.setItem('identity',JSON.stringify(this.identity));

@@ -15,6 +15,58 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+  <ion-spinner name = "bubbles" class="loading" *ngIf="loading"></ion-spinner>
+
+
+
+<ion-content fullscreen="true"*ngIf="!loading" >
+  <ion-card *ngFor="let y of yearInfo; let i = index">
+    <ion-card-header  class="ion-text-center cardheaderhome" >
+        <ion-card-title color="white bold" >
+            Información Cáncer de la Mujer
+        </ion-card-title>
+        <ion-card-title color="white bold">  {{y.ano}} </ion-card-title>
+        <ion-card-subtitle> </ion-card-subtitle>
+    </ion-card-header>   
+  </ion-card>
+
+    <!-- informacion general -->
+
+    <ion-card>
+      <ion-card-header class="ion-text-center cardheaderhome">
+          <ion-card-title color="white">Información General </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+      
+        <ion-list>
+          <ion-item>
+            <ion-icon name="document-text" size="large"></ion-icon>
+            <ion-label style="font-weight: bold;">Tomas de Citologias:</ion-label>
+            <ion-badge class="badgeCitos"> {{numCito}} </ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="document-text" size="large"></ion-icon>
+            <ion-label style="font-weight: bold;">Tomas de Vph:</ion-label>
+            <ion-badge class="badgeCitos" > {{numVph}} </ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="document-text" size="large"></ion-icon>
+            <ion-label style="font-weight: bold;">Tomas de Expl. Mama:</ion-label>
+            <ion-badge class="badgeDet" > {{numDet}} </ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="document-text" size="large"></ion-icon>
+            <ion-label style="font-weight: bold;">Tomas de Mastografias:</ion-label>
+            <ion-badge class="badgeDet" > {{numMasto}} </ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="document-text" size="large"></ion-icon>
+            <ion-label style="font-weight: bold;">Colposcopias en Control:</ion-label>
+            <ion-badge class="badgeColpos" > {{numColpos}} </ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
 
 </ion-content>

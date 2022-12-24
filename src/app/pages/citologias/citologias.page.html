@@ -14,8 +14,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-spinner name = "bubbles" color="success" class="loading" *ngIf="loading"></ion-spinner>
-  <p class="ion-text-center"> {{mensaje}} </p>
+  
+    <ion-spinner name = "bubbles" color="success" class="loading" *ngIf="loading"></ion-spinner>
+    <p class="ion-text-center"> {{mensaje}} </p>
+  
+  
 
 
   <ion-content fullscreen  *ngIf="!loading" >
@@ -32,18 +35,19 @@
         <!-- <ion-card-subtitle class="ion-text-center"> {{cito.ano}} </ion-card-subtitle> -->
         <ion-card-content> 
           <ion-list class="">
-            <ion-item>
-              <ion-label>
-                Meta Tomas de 25 a 34 años: 
-              </ion-label>
-              <ion-badge color="success"> {{meta.meta_cito}} </ion-badge>
-            </ion-item>
+           
            
             <ion-item>
               <ion-label>
                 Total de tomas: 
               </ion-label>
               <ion-badge color="success"> {{numCito}} </ion-badge>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Meta Tomas de 25 a 34 años: 
+              </ion-label>
+              <ion-badge color="success"> {{meta.meta_cito}} </ion-badge>
             </ion-item>
             <ion-item>
               <ion-label>

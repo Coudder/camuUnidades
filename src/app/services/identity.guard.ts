@@ -2,20 +2,20 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 
 
-import { AdminService } from './admin.service';
+import { UseruService } from './useru.service';
 
 @Injectable()
 export class IdentityGuard implements CanActivate{
 
     constructor(
         private _router: Router,
-        private _adminService: AdminService
+        private _useruService: UseruService
 
     ){}
     
 
     canActivate(){
-        let identity = this._adminService.getIdentity();
+        let identity = this._useruService.getIdentity();
 
         if(identity){
             return true;

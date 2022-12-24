@@ -612,7 +612,7 @@ export class CitologiasPage implements OnInit {
           return data
         }
       });
-      console.log(this.unidadFiltrada);
+    //  console.log(this.unidadFiltrada);
       
 
       this.numCito = this.unidadFiltrada.length;
@@ -1853,7 +1853,7 @@ export class CitologiasPage implements OnInit {
       response => {
         if(response.status = 'success'){
           this.metabackend = response.infoxunidad;
-          console.log(this.metabackend);
+          //console.log(this.metabackend);
        
         
           

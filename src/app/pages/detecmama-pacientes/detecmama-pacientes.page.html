@@ -2,16 +2,17 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <!-- <ion-menu-button></ion-menu-button> -->
-      <ion-back-button  defaultHref="/cito-pacientes" ></ion-back-button>
+      <ion-back-button  defaultHref="/detecmama" ></ion-back-button>
     </ion-buttons>
     <ion-title >
       {{title}}
     </ion-title>
+    <ion-button fill="clear"   slot="end" [routerLink]="['/detecmama-pac-archivo']">
+      <ion-icon class="icontoolbar" name="file-tray-full" size="large" ></ion-icon>
+    </ion-button>
   </ion-toolbar>
   <ion-toolbar>
-    <div class="ion-text-center">
-      <ion-icon name="file-tray-full" size="large"></ion-icon>
-      </div>
+   
     <ion-searchbar 
     class="ion-text-uppercase"
     placeholder="Busqueda..."
@@ -19,17 +20,15 @@
     (ionChange)="onSearchChange( $event )"
   ></ion-searchbar>
   <div class="ion-text-center">
-    <ion-badge> TOTAL:  {{numPacientes}} </ion-badge>
+    <ion-badge> TOTAL: {{numPacientes}} </ion-badge>
 </div>
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-spinner name="bubbles" color="success" class="loading" *ngIf="loading"></ion-spinner> -->
 
-<!-- data de pacientes cargada -->
-<ion-content fullscreen="true">
-  <!-- ion skeleton start -->
-  <ion-list *ngIf="loading">
+<ion-content fullscreen>
+   <!-- ion skeleton start -->
+   <ion-list *ngIf="loading">
     <ion-item  >
       
       <ion-thumbnail slot="start">
@@ -106,20 +105,20 @@
   <!-- ion skeleton ends -->
  
   <ion-list  *ngIf="!loading">
-    <ion-item *ngFor="let pac of unidadFiltrada | filtropac:busqueda "  [routerLink]=" ['/cito-pac-archivo-detail',pac.no]"  >
+    <ion-item *ngFor="let pac of unidadFiltrada | filtropac:busqueda "  [routerLink]=" ['/detecmama-pacientes-detail',pac.no]"  >
     <ion-icon name="person" size="large" class="iconperson"></ion-icon>
     <ion-label  >
      
       <h2> {{pac.nombre}} </h2>
-      <p>Fecha de Toma {{pac.fToma}} </p>
+      <p>Fecha de Toma {{pac.fAtencion}} </p>
       <p>Sicam: {{pac.sicam}} </p>
       <p> {{pac.unidadMedica}} </p>
       <!-- <p *ngIf="pac.dxCito != '' ">Tiene Resultado</p> -->
-      <span *ngIf="pac.dxCito != ''"><ion-icon color="success"  name="checkmark-circle-outline"></ion-icon></span>
-      <span *ngIf="pac.dxCito == ''"><ion-icon color="danger"  name="close-circle-outline"></ion-icon></span>
     
     </ion-label>
     </ion-item>
   </ion-list>
+
+
+
 </ion-content>
-<!-- end data pacientes cargada -->

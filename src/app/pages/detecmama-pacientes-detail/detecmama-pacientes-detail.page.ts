@@ -3,30 +3,27 @@ import { UseruService } from '../../services/useru.service';
 import { DataService } from '../../services/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-cito-pacientes-detail',
-  templateUrl: './cito-pacientes-detail.page.html',
-  styleUrls: ['./cito-pacientes-detail.page.scss'],
+  selector: 'app-detecmama-pacientes-detail',
+  templateUrl: './detecmama-pacientes-detail.page.html',
+  styleUrls: ['./detecmama-pacientes-detail.page.scss'],
   providers: [UseruService,DataService]
 })
-export class CitoPacientesDetailPage implements OnInit {
+export class DetecmamaPacientesDetailPage implements OnInit {
 
   public title:string;
   public identity;
   public token;
   public id:any;
   public paciente:any;
+  public mensaje:any;
 
-  public numCito:any;
+  public numDet:any;
   public numFilas:any;
 
-  public unidadM:any
   public celda:any;
   public fila:any;
   public datos:any =[];
-
-  public unidadFiltrada:any
 
   public campos:any=[];
   public loading : boolean;
@@ -39,10 +36,11 @@ export class CitoPacientesDetailPage implements OnInit {
     private _router:Router
 
   ) {
-    this.title = "INFORMACION DEL PACIENTE";
+    this.title = 'INFORMACION DEL PACIENTE';
     this.identity = this._useruService.getIdentity();
-    this.token =  this._useruService.getToken();
+    this.token = this._useruService.getToken();
     this.loading = true;
+
    }
 
   ngOnInit() {
@@ -50,13 +48,11 @@ export class CitoPacientesDetailPage implements OnInit {
   }
 
   getPaciente(){
-    this._route.params.subscribe(params => {
+    this._route.params.subscribe(params =>{
       this.id = +params['id'];
-      //console.log(this.id);
-      
-      this._dataService.getcitoData().subscribe(
-        response =>{
 
+      this._dataService.getdetmamaData().subscribe(
+        response => {
           let entries = response.values;
                 let numFilas = entries.length;
                 //console.log('Numero de Filas:' + numFilas);
@@ -85,36 +81,24 @@ export class CitoPacientesDetailPage implements OnInit {
                 }
 
                 //console.log(this.datos);
-
-                this.paciente = this.datos.filter((data:any)=> {
-                  if(data.no == this.id){
-                    return data;
-                  }
+                this.paciente = this.datos.filter((data)=>{
+                  if(data.no == this.id){return data}
                 });
-              //  console.log(this.paciente);
+               // console.log(this.paciente);
 
-                if(!this.paciente)
-                {
-                  console.log('Error en servidor de datos');
-                }else{
-                  this.loading=false;
-                }
+               if(!this.datos){
+                console.log('Error en el servidor de datos');
+               }else{
+                this.loading = false;
+               }
                 
-
-
-
         },
-        error => {
+        error =>{
           console.log(<any>error);
           
         }
       );
-
-
-
-    }
-    );
-
+    });
 
 
   }

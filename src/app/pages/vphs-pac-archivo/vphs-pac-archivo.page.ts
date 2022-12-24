@@ -2,36 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { UseruService } from '../../services/useru.service';
 import { DataService } from '../../services/data.service';
 
-
 @Component({
-  selector: 'app-cito-pac-archivo',
-  templateUrl: './cito-pac-archivo.page.html',
-  styleUrls: ['./cito-pac-archivo.page.scss'],
-  providers:[UseruService,DataService]
+  selector: 'app-vphs-pac-archivo',
+  templateUrl: './vphs-pac-archivo.page.html',
+  styleUrls: ['./vphs-pac-archivo.page.scss'],
+  providers: [UseruService,DataService]
 })
-export class CitoPacArchivoPage implements OnInit {
+export class VphsPacArchivoPage implements OnInit {
 
+  
   public title:string;
-  public identity:any;
-  public token:any;
-  public id:any;
+  public identity;
+  public token;
+  public id;
   public mensaje:boolean;
-  public unidad:any;
-  public pacientes:any;
+  public unidad:string
+  public pacientes;
   public busqueda:string="";
-  public numCito:any;
-  public numCitoUnidad:any;
-  public numFilas:any;
-  public unidadFiltrada: [];
+  public numVph;
+  public numCitoUnidad;
+  public numFilas;
+
  
-  public celda:any;
-  public fila:any;
-  public datos:any =[];
+  public celda;
+  public fila;
+  public datos =[];
  
   
-  public campos:any=[];
+  public campos=[];
   public loading : boolean;
-
+  public unidadFiltrada =[];
   public numPacientes;
 
   constructor(
@@ -39,34 +39,33 @@ export class CitoPacArchivoPage implements OnInit {
     private _dataService:DataService
 
   ) {
-    this.title = "ARCHIVO PACIENTES CITOLOGIAS"
-    this.loading = true;
+    this.title = 'ARCHIVO PACIENTES VPH'
     this.identity = this._useruService.getIdentity();
     this.token = this._useruService.getToken();
+    this.loading = true;
    }
 
    filterPaciente = '';
 
 
   ngOnInit() {
-    this.getcitoarchivoPac();
+    this.getPacientes();
   }
 
-  getcitoarchivoPac(){
-    this._dataService.getcitoArchivo().subscribe(
+  getPacientes(){
+    this._dataService.getvphArchivo().subscribe(
       response => {
-
         let entries = response.values;
         let numFilas = entries.length;
-       // console.log('Numero de Filas:' + numFilas);
+       //console.log('Numero de Filas:' + numFilas);
 
         //procesar datos
 
         for(var f=0; f<numFilas; f++)
         {
-          let fila:any = entries[f];
+          let fila = entries[f];
 
-          let obj:any = {}
+          let obj = {}
 
           for(var c=0; c<fila.length; c++)
           {
@@ -82,25 +81,18 @@ export class CitoPacArchivoPage implements OnInit {
 
           if(f>0) this.datos.push(obj);
         }
-
         //console.log(this.datos);
-
-        this.numCito = this.datos.length;
-
         this.unidadFiltrada = this.datos.filter((data)=>{
           if(data.unidadMedica == this.identity.unidad){return data}
         });
-        //console.log(this.unidadFiltrada);
+       // console.log(this.unidadFiltrada);
         this.numPacientes = this.unidadFiltrada.length;
-
-
-        if(!this.datos)
-        {
-          console.log('Error en el servidor de datos');
+        if(!this.datos){
+          console.log('Error en el Servidor de Datos');
         }else{
           this.loading = false;
         }
-
+        
       },
       error => {
         console.log(<any>error);
@@ -109,10 +101,9 @@ export class CitoPacArchivoPage implements OnInit {
     );
   }
 
-  onSearchChange(event:any){
+  onSearchChange(event){
 
     this.busqueda = event.detail.value;
   }
-
 
 }

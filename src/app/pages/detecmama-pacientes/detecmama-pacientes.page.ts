@@ -4,34 +4,30 @@ import { DataService } from '../../services/data.service';
 
 
 @Component({
-  selector: 'app-cito-pac-archivo',
-  templateUrl: './cito-pac-archivo.page.html',
-  styleUrls: ['./cito-pac-archivo.page.scss'],
-  providers:[UseruService,DataService]
+  selector: 'app-detecmama-pacientes',
+  templateUrl: './detecmama-pacientes.page.html',
+  styleUrls: ['./detecmama-pacientes.page.scss'],
+  providers: [UseruService,DataService]
 })
-export class CitoPacArchivoPage implements OnInit {
+export class DetecmamaPacientesPage implements OnInit {
 
   public title:string;
-  public identity:any;
-  public token:any;
-  public id:any;
-  public mensaje:boolean;
-  public unidad:any;
-  public pacientes:any;
-  public busqueda:string="";
-  public numCito:any;
-  public numCitoUnidad:any;
-  public numFilas:any;
-  public unidadFiltrada: [];
- 
-  public celda:any;
-  public fila:any;
-  public datos:any =[];
- 
-  
-  public campos:any=[];
-  public loading : boolean;
+  public paciente:any;
+  public token;
+  public identity;
 
+  
+  public numFilas:any;
+  public numDet:any;
+  public celda:any
+  public fila:any;
+
+  public campos:any =[];
+  public datos:any = [];
+
+  public loading:boolean;
+  public busqueda:string="";
+  public unidadFiltrada =[];
   public numPacientes;
 
   constructor(
@@ -39,23 +35,21 @@ export class CitoPacArchivoPage implements OnInit {
     private _dataService:DataService
 
   ) {
-    this.title = "ARCHIVO PACIENTES CITOLOGIAS"
-    this.loading = true;
+    this.title = 'PACIENTES EXPL. MAMA';
     this.identity = this._useruService.getIdentity();
     this.token = this._useruService.getToken();
+    this.loading = true;
    }
 
    filterPaciente = '';
 
-
   ngOnInit() {
-    this.getcitoarchivoPac();
+    this.getPacientes();
   }
 
-  getcitoarchivoPac(){
-    this._dataService.getcitoArchivo().subscribe(
+  getPacientes(){
+    this._dataService.getdetmamaData().subscribe(
       response => {
-
         let entries = response.values;
         let numFilas = entries.length;
        // console.log('Numero de Filas:' + numFilas);
@@ -82,37 +76,31 @@ export class CitoPacArchivoPage implements OnInit {
 
           if(f>0) this.datos.push(obj);
         }
-
-        //console.log(this.datos);
-
-        this.numCito = this.datos.length;
-
+        //console.log(this.datos);   
         this.unidadFiltrada = this.datos.filter((data)=>{
           if(data.unidadMedica == this.identity.unidad){return data}
         });
         //console.log(this.unidadFiltrada);
         this.numPacientes = this.unidadFiltrada.length;
 
-
-        if(!this.datos)
-        {
-          console.log('Error en el servidor de datos');
+        if(!this.datos){
+          console.log('Error en el servidor de Datos');
+          
         }else{
           this.loading = false;
         }
-
+        
       },
       error => {
         console.log(<any>error);
         
       }
     );
+
   }
-
+  
   onSearchChange(event:any){
-
     this.busqueda = event.detail.value;
   }
-
 
 }

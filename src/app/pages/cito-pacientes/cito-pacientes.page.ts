@@ -41,6 +41,9 @@ export class CitoPacientesPage implements OnInit {
     this.loading = true;
    }
 
+   filterPaciente = '';
+
+
   ngOnInit() {
     this.getcitoPacientes();
   }
